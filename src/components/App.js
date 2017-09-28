@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 
+import '../style.css';
+
 class App extends Component {
   render() {
     return (
