@@ -1,0 +1,27 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "material-ui": "^1.0.0-beta.12",
+    "material-ui-icons": "^1.0.0-beta.10",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-redux": "^5.0.6",
+    "react-scripts": "^1.0.13",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "typeface-lato": "0.0.35",
+    "typeface-roboto": "0.0.35"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "jest": "^21.1.0",
+    "jest-cli": "^21.1.0"
+  }
+}
