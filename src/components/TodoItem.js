@@ -20,12 +20,15 @@ export default class TodoItem extends Component {
   };
 
   render() {
-    if (this.state.editing) return <TodoForm id={this.props.id} text={this.props.text}/>;
+    if (this.state.editing) return <TodoForm id={this.props.todo.id} text={this.props.todo.title}/>;
     return (
       <div>
-        {this.props.text}
-        <button onClick={this.toggleEditor}>Edit</button>
-        <button onClick={() => this.props.deleteTodo(this.props.id)}>&times;</button>
+        <span style={{ textDecoration: !this.props.todo.completed ? "none" : "line-through" }}>
+        {this.props.todo.title}
+        </span>
+        <button onClick={() => this.props.toggleTodo(this.props.todo.id, !this.props.todo.completed)}>&#10004;</button>
+        <button onClick={this.toggleEditor}> &#9999; </button>
+        <button onClick={() => this.props.deleteTodo(this.props.todo.id)}>&times;</button>
       </div>
     );
   }
