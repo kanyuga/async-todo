@@ -17,7 +17,7 @@ let TodoForm = (props) => {
           input = item
         }}
       />
-      <button>{props.id ? "Update" : "Add"}</button>
+      <button>{props.id ? <span>&#128190;</span> : <span>+</span>}</button>
     </form>
   );
 };

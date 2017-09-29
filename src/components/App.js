@@ -12,7 +12,11 @@ class App extends Component {
         <TodoForm/>
         <ol>
           {Object.keys(this.props.todos).map((key, index) => (
-            <li key={index}><TodoItem id={key} text={this.props.todos[key]} deleteTodo={this.props.deleteTodo} /></li>
+            <li key={index}><TodoItem
+              todo={this.props.todos[key]}
+              deleteTodo={this.props.deleteTodo}
+              toggleTodo={this.props.toggleTodo}
+            /></li>
           ))}
         </ol>
       </div>
