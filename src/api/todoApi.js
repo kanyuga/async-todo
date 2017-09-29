@@ -1,56 +1,28 @@
-const todos = {
-  1: {
-    id: 1,
-    title: "Get Something Done",
-    completed: false
-  },
-};
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT;
+
+axios.interceptors.response.use(response => response.data);
 
 class TodoAPI {
-
-  static addTodo = (text) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        let id = Math.max(...Object.keys(todos)) + 1;
-        todos[id] = { id, title: text, completed: false };
-        return resolve(todos[id]);
-      }, 500);
-    });
+  static addTodo = (title) => {
+    return axios.post('/todos', { title }).then(response => response.data);
   };
 
   static deleteTodo = (id) => {
-    return new Promise((resolve, reject) => {
-      if (todos[id]) {
-        delete todos[id];
-        return resolve(true);
-      }
-      return reject(`Todo ${id} not found`);
-    });
+    return axios.delete(`/todos/${id}`);
   };
 
   static editTodo = (id, title) => {
-    return new Promise((resolve, reject) => {
-      if (todos[id]) {
-        todos[id].title = title;
-        return resolve(todos[id]);
-      }
-      return reject(`Todo ${id} not found`);
-    });
+    return axios.patch(`/todos/${id}`, { title }).then(response => response.data);
   };
 
   static toggleTodo = (id, completed) => {
-    return new Promise((resolve, reject) => {
-      if (todos[id]) {
-        todos[id].completed = completed;
-        return resolve(todos[id]);
-      }
-      return reject(`Todo ${id} not found`);
-    });
+    return axios.patch(`/todos/${id}`, { completed }).then(response => response.data);
   };
 
-
   static fetchTodos = () => {
-    return new Promise((resolve, reject) => resolve({ ...todos }));
+    return axios.get('/todos').then(response => response.data);
   };
 }
 

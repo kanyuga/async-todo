@@ -36,6 +36,7 @@ export const deleteTodo = id => dispatch => {
 export const editTodo = (id, text) => dispatch => {
   TodoAPI.editTodo(id, text)
     .then((todo) => {
+      console.log(todo);
       dispatch(editTodoSuccess(todo))
     })
     .catch();

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://kanyuga.github.io/async-todo",
   "dependencies": {
+    "axios": "^0.16.2",
     "gh-pages": "^1.0.0",
     "material-ui": "^1.0.0-beta.12",
     "material-ui-icons": "^1.0.0-beta.10",

@@ -1,5 +1,60 @@
 import TodoAPI from "./todoApi";
 
+const mockTodos = {
+  1: {
+    id: 1,
+    title: "Get Something Done",
+    completed: false
+  },
+};
+
+jest.mock('./todoApi', () => ({
+  addTodo : jest.fn((text) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let id = Math.max(...Object.keys(mockTodos)) + 1;
+        mockTodos[id] = {id, title: text, completed: false};
+        return resolve(mockTodos[id]);
+      }, 500);
+    });
+  }),
+
+  deleteTodo : jest.fn((id) => {
+    return new Promise((resolve, reject) => {
+      if (mockTodos[id]) {
+        delete mockTodos[id];
+        return resolve(true);
+      }
+      return reject(`Todo ${id} not found`);
+    });
+  }),
+
+  editTodo : jest.fn((id, title) => {
+    return new Promise((resolve, reject) => {
+      if (mockTodos[id]) {
+        mockTodos[id].title = title;
+        return resolve(mockTodos[id]);
+      }
+      return reject(`Todo ${id} not found`);
+    });
+  }),
+
+  toggleTodo : jest.fn((id, completed) => {
+    return new Promise((resolve, reject) => {
+      if (mockTodos[id]) {
+        mockTodos[id].completed = completed;
+        return resolve(mockTodos[id]);
+      }
+      return reject(`Todo ${id} not found`);
+    });
+  }),
+
+
+  fetchTodos: jest.fn(() => {
+    return new Promise((resolve, reject) => resolve({ ...todos }));
+  })
+}));
+
 describe('testing API', () => {
   it ('returns the only item', async () => {
     expect.assertions(1);
